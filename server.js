@@ -1,6 +1,7 @@
 require("dotenv").config()
 const express = require("express")
 const path = require("path")
+const fs = require("fs")
 
 const app = express()
 
@@ -9,8 +10,29 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
 app.set("view engine", "ejs")
 
+// create task
+app.post("/create", (req, res) => {
+  fs.writeFile(
+    `./files/${req.body.title.split(" ").join("-")}.txt`,
+    req.body.description,
+    (err) => {
+      res.redirect("/")
+    }
+  )
+})
+
+// get all tasks
 app.get("/", (req, res) => {
-  res.render("index")
+  fs.readdir("./files", (err, data) => {
+    res.render("index", { tasks: data })
+  })
+})
+
+// get a single task
+app.get("/tasks/:taskName", (req, res) => {
+  fs.readFile(`./files/${req.params.taskName}`, "utf-8", (err, taskData) => {
+    res.render("task", { taskName: req.params.taskName, taskDesc: taskData })
+  })
 })
 
 const PORT = process.env.PORT || 5000
