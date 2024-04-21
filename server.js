@@ -4,9 +4,10 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
-  res.send("Hello World")
+  res.render("index")
 })
 
 const PORT = process.env.PORT || 5000
