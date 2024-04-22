@@ -33,13 +33,24 @@
       <h1 class="text-5xl text-white font-bold text-center">All Tasks</h1>
       <div class="tasks p-10 text-white flex flex-wrap gap-5 justify-between">
         <% if (tasks.length > 0) { %> <% tasks.forEach((task) => { %>
-        <div class="task bg-zinc-800 w-60 rounded-md p-3">
+        <div
+          class="task bg-zinc-800 w-60 rounded-md p-3 flex flex-col justify-between"
+        >
           <h1 class="text-2xl font-bold text-center tracking-tight mb-2">
             <%= task %>
           </h1>
-          <a class="text-blue-500 inline-block mt-3" href="/tasks/<%= task %>"
-            >Read More</a
-          >
+          <div class="flex justify-between items-center mt-3">
+            <a
+              class="text-blue-400 hover:text-blue-500"
+              href="/tasks/<%= task %>"
+              >Read More</a
+            >
+            <a
+              class="text-gray-300 hover:text-gray-400"
+              href="/edit/<%= task %>"
+              >Edit</a
+            >
+          </div>
         </div>
         <% }) %> <% } else{ %>
         <h3 class="text-zinc-400">No tasks yet...</h3>

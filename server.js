@@ -35,6 +35,21 @@ app.get("/tasks/:taskName", (req, res) => {
   })
 })
 
+// edit & update a task
+app.get("/edit/:taskName", (req, res) => {
+  res.render("edit", { oldTitle: req.params.taskName })
+})
+
+app.post("/edit", (req, res) => {
+  fs.rename(
+    `./files/${req.body.oldTitle}`,
+    `./files/${req.body.newTitle}`,
+    (err) => {
+      res.redirect("/")
+    }
+  )
+})
+
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {

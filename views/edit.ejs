@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Edit <%= oldTitle %></title>
+  </head>
+  <body>
+    <div class="main w-full min-h-screen bg-zinc-900 px-20 py-10">
+      <a class="text-blue-500 mb-10 inline-block" href="/">Go Back to Home</a>
+      <h1 class="text-5xl text-white font-bold text-center">Edit Task Title</h1>
+      <div class="form text-white py-10">
+        <form action="/edit" method="POST">
+          <input
+            class="block px-5 py-2 bg-zinc-800 text-zinc-600 w-full rounded-lg outline-none"
+            type="text"
+            name="oldTitle"
+            placeholder="Old Title"
+            value="<%= oldTitle %>"
+          />
+          <input
+            class="block mt-3 px-5 py-2 bg-zinc-800 w-full rounded-lg outline-none"
+            type="text"
+            name="newTitle"
+            placeholder="New Title"
+          />
+          <input
+            class="mt-3 bg-blue-600 px-5 py-2 rounded-lg hover:bg-blue-700 cursor-pointer"
+            type="submit"
+            value="Update"
+          />
+        </form>
+      </div>
+    </div>
+
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>
